@@ -1,0 +1,74 @@
+
+server {
+  listen 80;
+  server_name
+    raga10.org
+  ;
+
+  return 301 http://www.raga10.org;
+}
+
+upstream wp_raga10 {
+  server 127.0.0.1:9004  fail_timeout=0;
+}
+
+server {
+  listen 80;
+
+  server_name www.raga10.org;
+  root /var/www/wp_raga10;
+
+  error_log /var/log/wp_raga10/nginx-error.log;
+  access_log /var/log/wp_raga10/nginx-access.log;
+
+  charset utf-8;
+  client_max_body_size 75M;
+  client_body_timeout 600s;
+  #keepalive_timeout 5;
+
+  location /db/ {
+    deny all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location ~ /\. {
+    deny all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location ~* \.(png|jpg|jpeg|gif)$ {
+    #expires 24h;
+    log_not_found off;
+  }
+
+location ~* \.(js|css|ico)$ {
+  expires 24h;
+  log_not_found off;
+}  index index.php;
+
+  location / {
+    try_files $uri $uri/ $uri.html /index.php?$request_uri;
+  }
+
+  location ~ \.html$ {
+    rewrite ^(.*).html$ $1 permanent;
+  }
+
+
+  location ~ \.php$ {
+    include       fastcgi_params;
+    fastcgi_pass  wp_raga10;
+  }}

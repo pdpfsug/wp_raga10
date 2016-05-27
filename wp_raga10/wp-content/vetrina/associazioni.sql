@@ -1,0 +1,11 @@
+CREATE TABLE "associazioni" (
+	"id" INTEGER PRIMARY KEY,
+	"name" VARCHAR(128) NOT NULL,
+	"email" VARCHAR(128) DEFAULT NULL,
+	"referrer_name" VARCHAR(128) NOT NULL,
+	"referrer_email" VARCHAR(128) NOT NULL,
+	"web" VARCHAR(1024) DEFAULT NULL,
+	"logo" VARCHAR(1024) DEFAULT NULL,
+	"description" TEXT DEFAULT NULL,
+	"is_enabled" INTEGER DEFAULT 0
+);

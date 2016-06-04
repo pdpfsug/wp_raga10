@@ -23,7 +23,7 @@ At that time we have taken some more effort to make it easily reusable from othe
 ## Directory structure
 
 * `wp_raga10`: the Wordpress site -> do not commit your settings!
-* `db`: holds the schema of the installation db TODO
+* `db`: holds the schema of the installation db
 * `settings`: holds application settings -> do not commit your settings!
 * `deploy`: configurations files used to deploy the service, you have to adapt to your own server; -> do not commit your passwords!
 * `backups`: placeholder directory to holds backup if you want -> do not commit your data!

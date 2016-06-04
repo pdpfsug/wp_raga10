@@ -2,9 +2,9 @@
 Contributors: Mike Challis
 Author URI: http://www.642weather.com/weather/scripts.php
 Donate link: https://www.FastSecureContactForm.com/donate
-Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual, wpmu
+Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual
 Requires at least: 3.4.2
-Tested up to: 4.1
+Tested up to: 4.4.2
 Stable tag: trunk
 
 An easy and powerful form builder that lets your visitors send you email. Blocks all automated spammers. No templates to mess with.
@@ -218,31 +218,32 @@ At this point it would be useful to read [Installing WordPress in Your Language]
 
 The following translations are included in the download zip file:
 
-* Albanian (sq_AL) - Translated by [Romeo Shuka](http://www.romeolab.com)
-* Arabic (ar) partial translation - Translated by Jasmine Hassan
-* Bulgarian (bg_BG) - Translated by [Dimitar Atanasov](http://chereshka.net)
-* Chinese (zh_CN) - Translated by [Awu](http://www.awuit.cn/) 
-* Danish (da_DK) - Translated by [GeorgWP](http://wordpress.blogos.dk/wpdadkdownloads/)
-* Farsi(Persian)(fa_IR) partial translation - Translated by Ramin Firooz
-* Finnish (fi) - Translated by [Mikko Vahatalo](http://www.guimikko.com/) 
-* French (fr_FR) - Translated by [Pierre Sudarovich](http://pierre.sudarovich.free.fr/)
-* German (de_DE) - Translated by [Sebastian Kreideweiss](http://sebastian.kreideweiss.info/)
-* Greek (el) - Translated by [Ioannis](http://www.jbaron.gr/)
-* Hebrew, Israel (he_IL) - Translated by Asaf Chertkoff FreeAllWeb GUILD
-* Hungarian (hu_HU) - Translated by [Jozsef Burgyan](http://dmgmedia.hu)
-* Italian (it_IT) - Translated by [Gianni Diurno](http://gidibao.net/ "Gianni Diurno")
-* Japanese (ja) - Translated by [Ichiro Kozuka]
-* Norwegian Bokmal (nb_NO) - Translated by [Tore Johnny Bratveit](http://punktlig-ikt.no)
-* Polish (pl_PL) - Translated by [Pawel Mezyk]
-* Portuguese (pt_PT) - Translated by [AJBFerreira Blog](http://pws.op351.net/)
-* Portuguese Brazil (pt_BR) - Translated by [Rui Alao]
-* Romanian (ro_RO) - Translated by [Anunturi Jibo](http://www.jibo.ro)
-* Russian (ru_RU) - Translated by [Iflexion](http://www.iflexion.com/)
-* Spanish (es_ES) - Translated by [Manuel](http://www.mbrsolution.com/)
-* Swedish (sv_SE) - Translated by [Daniel Persson](http://walktheline.boplatsen.se/)
-* Traditional Chinese, Taiwan (zh_TW) - Translated by [Cjh]
-* Turkish (tr_TR) - Translated by [Tolga](http://www.tapcalap.com/)
-* Ukrainian (uk_UA) - Translated by [Wordpress.Ua](http://wordpress.ua/)
+= Translators =
+* Albanian (sq_AL) - Romeo Shuka
+* Arabic (ar) - Jasmine Hassan
+* Bulgarian (bg_BG) - Dimitar Atanasov
+* Chinese (zh_CN) - Awu
+* Danish (da_DK) - GeorgWP
+* Farsi(Persian)(fa_IR) Ramin Firooz
+* Finnish (fi) - Mikko Vahatalo
+* French (fr_FR) - Pierre Sudarovich
+* German (de_DE) - Sebastian Kreideweiss
+* Greek (el) - Ioannis
+* Hebrew, Israel (he_IL) - Asaf Chertkoff FreeAllWeb GUILD
+* Hungarian (hu_HU) - Jozsef Burgyan
+* Italian (it_IT) - Gianni Diurno
+* Japanese (ja) - Ichiro Kozuka
+* Norwegian Bokmal (nb_NO) - Tore Johnny Bratveit
+* Polish (pl_PL) - Pawel Mezyk
+* Portuguese (pt_PT) - AJBFerreira Blog
+* Portuguese Brazil (pt_BR) - Rui Alao
+* Romanian (ro_RO) - Anunturi Jibo
+* Russian (ru_RU) - Iflexion
+* Spanish (es_ES) - Manuel
+* Swedish (sv_SE) - Elger Lindgren
+* Traditional Chinese, Taiwan (zh_TW) - Cjh
+* Turkish (tr_TR) - Tolga
+* Ukrainian (uk_UA) - Wordpress.Ua
 * More are needed... Please help translate.
 
 = Can I provide a translation? =
@@ -270,6 +271,45 @@ If you have additional questions visit [vCita Support Page](http://support.vcita
 
 == Changelog ==
 
+= 4.0.41 =
+- (13 Feb 2016) - Fix: PHP Fatal error: Class 'securimage_ctf' not found.
+
+= 4.0.40 =
+- (12 Feb 2016) - Fix: Captcha did not show on some PHP7 installations
+- Fix: W3C validation Error with the attachment field.
+
+= 4.0.39 =
+- (01 Jan 2016) - Fix: The sender's location was no longer being shown in emails when you upgraded Visitor Maps and Who's Online to version 1.5.8.8+.
+- updated vCita code for recent API changes.
+- removed advertisements.
+- updated the Swedish translation
+
+= 4.0.38 =
+- (07 Sep 2015) - Fix: There are five form settings fields where unfiltered HTML is allowed by form Administrators by design. The problem fixed was that the setting DISALLOW_UNFILTERED_HTML was not being checked before allowing HTML. This issue was reported by Sathish from Cyber Security Works Pvt Ltd.
+
+= 4.0.37 =
+- (25 May 2015) - fixed bug: redirect url encoding.
+- fixed bug: the auto form fill feature will now automatically make the name and email form fields readonly when the feature is enabled to auto fill the logged on user's name and email. Non-logged in users can still edit those fields to enter their own name and email. Note: administrator is ignored, always has to fill in the fields. 
+- fixed bug: placeholder was not working on password field type.
+- added filter to modify autoresponder subject. This is useful for adding a ticket number.
+
+= 4.0.36 =
+- (02 May 2015) - Fixed possible xss vulnerability with add_query_arg(), remove_query_arg() and esc_url() usage.
+- Improved timezone compliance with WP standards.
+
+= 4.0.34 =
+- (03 Apr 2015) - added a new filter hook to allow modifying the $user_info array. The user info is displayed at the end of the email
+- changed the default CSS for Radio and Checkbox field inputs to comply with [google webmaster tools mobile friendly test](https://www.google.com/webmasters/tools/mobile-friendly/). The tap targets were too close for radio and checkbox fields on mobile devices.
+CSS changes made in an update will only change the defaults for new forms you add, not any existing ones. This is to respect any settings you might have made yourself on the forms you have now.
+
+Please adjust these settings manually on any existing forms with radio or checkbox fields:
+Edit each of your forms on the form edit page, click on the Styles tab
+Change these two settings, like so:
+Input checkbox fields: width:22px; height:32px;
+Input radio fields: width:22px; height:32px;
+
+Click the Save Changes button, repeat for your other forms.
+The defaults settings were: width:13px; 
 
 = 4.0.33 =
 - (17 Feb 2015) - fixed fscf_init_languages priority

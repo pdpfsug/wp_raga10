@@ -62,39 +62,23 @@ $(document).ready(function(){
    <div id="header" class="block-content">
      <div id="pagetitle">
 
-	<!-- logo raga10 -->
-	<div style="position: absolute; top: 0.5em; right: 2em;"><a href="http://raga10.org/"><img src="/loghi/RAGA10-logo-bianco.png" title="Raga 10" alt="Logo Raga10" height="120"></a></div>
-	<!-- intestazione RAGA10 -->
       <h1 class="logo"><a href="<?php bloginfo('url'); ?>/"><?php bloginfo('name'); ?></a></h1>
 
       <?php if(get_bloginfo('description')<>'') { ?><h4><?php bloginfo('description'); ?></h4><?php } ?>
 
       <div class="clear"></div>
 
-      <?php if(get_arclite_option('search')<>'no') { ?>
-      <?php // get_search_form(); ?>
-
-<!-- link ACCEDI -->
-
-<div style="position:absolute; right: 2em; top:13em; padding: 0.5em; border-color:1px solid grey; background-color:lightgrey;"><a href="http://www.raga10.org/wp-login.php" style="text-decoration: none; font-weight:bold;">ACCEDI</a></div>
-
-<div style="position:absolute; right: 8em; top:13em; padding: 0.5em; border-color:1px solid grey; background-color:lightgrey;"><a href="http://www.raga10.org/wp-content/uploads/2011/02/istruzioni_raga10.pdf" style="text-decoration: none; font-weight:bold;">ISTRUZIONI</a></div>
-
-<div style="position:absolute; right: 15em; top:8em;"><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/pages/Raga10-Rete-Associazioni-Giovanili-Ambito10/140177566037404" layout="box_count"></fb:like></div>
-
-	<!-- search form -->
-      <div class="search-block">
-	<div class="searchform-wrap">
+      <!-- search form -->
+      <div class="search-block" style="right:-5em; bottom:9em">
+	<div class="searchform-wrap" style="float:left">
           <form method="get" id="searchform" action="<?php bloginfo('url'); ?>/">
             <fieldset>
             <input type="text" name="s" id="searchbox" class="searchfield" value="<?php _e("Search","arclite"); ?>" onfocus="if(this.value == '<?php _e("Search","arclite"); ?>') {this.value = '';}" onblur="if (this.value == '') {this.value = '<?php _e("Search","arclite"); ?>';}" />
              <input type="submit" value="Go" class="go" />
             </fieldset>
           </form>
-        </div>
-      </div>
-      <!-- /search form -->
-      <?php } ?>
+        </div> 
+       </div>
      </div>
 
      <!-- main navigation -->
@@ -123,6 +107,17 @@ $(document).ready(function(){
       </div>
      </div>
      <!-- /main navigation -->
+
+     <!-- login navigation bar -->
+	<div id="nav-wrap1" style="left:auto; right:1em">
+      		<div id="nav-wrap2">
+		        <ul id="nav"> 
+				<li class="page_item page-item-4812"><a class="fadeThis" href="http://127.0.0.1/wp_raga10/wp-content/uploads/2016/06/Manuale_Utilizzo.pdf"><span>Istruzioni</span></a></li>
+				<li class="page_item page-item-4795"><a class="fadeThis" href="http://127.0.0.1/wp_raga10/wp-login.php"><span>Login</span></a></li>
+        		</ul>
+		</div>
+     	</div>
+     <!-- /login navigation bar -->
 
    </div>
   </div>

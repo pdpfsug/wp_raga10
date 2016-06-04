@@ -265,8 +265,6 @@ class FSCF_Options {
 
 		$num_tabs = count( $tab_names );
 
-		self::define_ads();
-
 		// Process ctf_actions, if any
 		if ( ! empty($_POST['ctf_action']) ) FSCF_Action::do_ctf_action( );
 		
@@ -526,7 +524,7 @@ class FSCF_Options {
 		. __('Please donate to keep this plugin FREE', 'si-contact-form') . '<br />'
 		. __('If you find this plugin useful to you, please consider making a small donation to help contribute to my time invested and to further development. Thanks for your kind support!', 'si-contact-form') . ' '
 		. '- <a style="cursor:pointer;" title="' . esc_attr__('More from Mike Challis', 'si-contact-form')
-		. '" onclick="toggleVisibility(\'si_contact_mike_challis_tip\')"><br />' .  __('More from Mike Challis', 'si-contact-form') .'</a>
+		. '" onclick="toggleVisibility(\'si_contact_mike_challis_tip\')"><br />' .  __('You have 1 message from Mike Challis', 'si-contact-form') .'</a>
 	<br /> <br />
 	</div>
 	<a href="https://www.fastsecurecontactform.com/donate">
@@ -537,15 +535,19 @@ class FSCF_Options {
 
 		?>
 		<div class="fscf_ad">
-		<?php _e('Making a donation and enabling this setting removes the settings page advertisements.', 'si-contact-form'); echo ' '; ?>
-        <br /><br /><input name="fs_contact_donated" id="fs_contact_donated" type="checkbox" <?php if( self::$global_options['donated'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-		<label for="fs_contact_donated"><?php _e('I have donated to help contribute for the development of this awesome plugin.', 'si-contact-form');?></label>
+		<?php
+        if ( 'true' != self::$global_options['donated'] ) {
+          _e('Making a donation and enabling this setting removes this donation message.', 'si-contact-form'); echo '<br /><br />';
+        }
+        ?>
+        <input name="fs_contact_donated" id="fs_contact_donated" type="checkbox" <?php if( self::$global_options['donated'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
+		<label for="fs_contact_donated"><?php _e('I have donated to help contribute to the development of this awesome plugin.', 'si-contact-form');?></label>
 		</div></div>
 
 		<div class="fscf_tip" id="si_contact_mike_challis_tip">
 		<img src="<?php echo plugins_url( 'si-contact-form/includes/si-contact-form.jpg' ); ?>" class="fscf_left fscf_img" width="250" height="185" alt="Mike Challis" /><br />
-		<?php _e('Mike Challis says: "Hello, I have spent hundreds of hours coding this plugin just for you. If you are satisfied with my programs and support please consider making a small donation. If you are not able to, that is OK.', 'si-contact-form'); ?>
-		<?php echo ' '; _e('Suggested donation: $25, $20, $15, $10, $5, $3. Donations can be made with your PayPal account, or securely using any of the major credit cards. Please also review my plugin."', 'si-contact-form'); ?>
+		<?php _e('Mike Challis says: "If you are satisfied with this plugin, please consider making a small donation.', 'si-contact-form'); ?>
+		<?php echo ' '; _e('Suggested donation: $50, $25, $20, $15, $10, $5. Donations can be made with your PayPal account, or securely using any of the major credit cards. If you are not able to donate, that is OK. Please also review my plugin."', 'si-contact-form'); ?>
 		 <br /><a href="http://wordpress.org/support/view/plugin-reviews/si-contact-form?rate=5#postform" target="_blank"><?php _e('Review this plugin now', 'si-contact-form'); ?></a>.
 		<br /><br />
 		<a style="cursor:pointer;" title="Close" onclick="toggleVisibility('si_contact_mike_challis_tip');"><?php _e('Close this message', 'si-contact-form'); ?></a>
@@ -596,7 +598,7 @@ class FSCF_Options {
         <p class="submit">
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
-		<?php self::display_ads();
+		<?php
 
 		// checks for properly configured Email To: addresses in options.
 		$ctf_contacts = array( );
@@ -1337,8 +1339,6 @@ class FSCF_Options {
 		</p>
         </div>
 
-		<?php self::display_ads(); ?>
-
 		<p><strong>General Field Settings</strong></p>
 		<label for="fs_contact_date_format"><?php _e( 'Date field - Date format:', 'si-contact-form' ); ?></label>
 		<select id="fs_contact_date_format" name="<?php echo self::$form_option_name; ?>[date_format]">
@@ -1458,7 +1458,6 @@ class FSCF_Options {
         <p class="submit">
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
-        <?php self::display_ads(); ?>
 
         <strong><?php _e('Modifiable CSS Style Feature:', 'si-contact-form'); ?></strong>
         <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_css_tip');"><?php _e('help', 'si-contact-form'); ?></a>
@@ -1945,8 +1944,6 @@ if( self::$form_options['external_style'] == 'true' ) {
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
 
-        <?php self::display_ads(); ?>
-        
 <strong><?php _e('Change field labels:', 'si-contact-form'); ?></strong>
         <a style="cursor:pointer;" title="<?php esc_attr_e('Click for Help!', 'si-contact-form'); ?>" onclick="toggleVisibility('si_contact_text_fields_tip');"><?php _e('help', 'si-contact-form'); ?></a>
        <div class="fscf_tip" id="si_contact_text_fields_tip">
@@ -1955,7 +1952,7 @@ if( self::$form_options['external_style'] == 'true' ) {
 <br />
 
         <input name="<?php echo self::$form_option_name;?>[req_field_label_enable]" id="si_contact_req_field_label_enable" type="checkbox" <?php if ( self::$form_options['req_field_label_enable'] == 'true' ) echo ' checked="checked" '; ?> value="true" />
-        <label for="<?php echo self::$form_option_name;?>[req_field_label_enable]"><?php _e('Enable required field label on contact form:', 'si-contact-form') ?></label> <?php echo (self::$form_options['tooltip_required'] != '') ? self::$form_options['req_field_indicator'] .self::$form_options['tooltip_required'] : self::$form_options['req_field_indicator'] . __('indicates required field', 'si-contact-form'); ?><br />
+        <label for="<?php echo self::$form_option_name;?>[req_field_label_enable]"><?php _e('Enable required field label on contact form:', 'si-contact-form') ?></label> <?php echo esc_html( (self::$form_options['tooltip_required'] != '') ? self::$form_options['req_field_indicator'] .self::$form_options['tooltip_required'] : self::$form_options['req_field_indicator'] . __('indicates required field', 'si-contact-form') ); ?><br />
 
         <label for="<?php echo self::$form_option_name;?>[tooltip_required]"><?php _e('indicates required field', 'si-contact-form'); ?></label><input name="<?php echo self::$form_option_name;?>[tooltip_required]" id="si_contact_tooltip_required" type="text" value="<?php echo esc_attr(self::$form_options['tooltip_required']);  ?>" size="50" /><br />
 
@@ -2093,7 +2090,7 @@ if( self::$form_options['external_style'] == 'true' ) {
         <p class="submit">
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
-		<?php self::display_ads(); ?>
+
 		<input name="<?php echo self::$form_option_name; ?>[auto_respond_enable]" id="si_contact_auto_respond_enable" type="checkbox" <?php if ( self::$form_options['auto_respond_enable'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
 		<label for="<?php echo self::$form_option_name; ?>[auto_respond_enable]"><?php _e( 'Enable confirmation email message.', 'si-contact-form' ); ?></label>
 		<a style="cursor:pointer;" title="<?php esc_attr_e( 'Click for Help!', 'si-contact-form' ); ?>" onclick="toggleVisibility('si_contact_auto_respond_enable_tip');"><?php _e( 'help', 'si-contact-form' ); ?></a>
@@ -2861,7 +2858,6 @@ if( self::$form_options['external_style'] == 'true' ) {
         <p class="submit">
 			<input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
 		</p>
-  		<?php self::display_ads(); ?>
 
 		<input name="<?php echo self::$form_option_name; ?>[captcha_enable]" id="si_contact_captcha_enable" type="checkbox" <?php if ( self::$form_options['captcha_enable'] == 'true' ) echo ' checked="checked" '; ?> value="true" />
 		<label for="<?php echo self::$form_option_name; ?>[captcha_enable]"><?php _e( 'Enable CAPTCHA.', 'si-contact-form' ); ?></label>
@@ -3056,47 +3052,57 @@ if( self::$form_options['external_style'] == 'true' ) {
 
 
 	static function meeting_settings_callback() {
-         // don't use form tags, this is already inside a form
+		// don't use form tags, this is already inside a form
+	  // prevent stuck condition with blank uid
+	  if ( self::$form_options['vcita_approved'] == 'true' && empty( self::$form_options['vcita_uid'] ) )
+	        self::$form_options['vcita_approved'] = 'false'; ?>
 
-          // prevent stuck condition with blank uid
-          if ( self::$form_options['vcita_approved'] == 'true' && empty( self::$form_options['vcita_uid'] ) )
-                self::$form_options['vcita_approved'] = 'false';
+	  <input name="<?php echo self::$form_option_name;?>[vcita_approved]" id="si_contact_vcita_approved" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_approved']); ?>" />
+	  <input name="<?php echo self::$form_option_name;?>[vcita_uid]" id="si_contact_vcita_uid" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_uid']); ?>" />
+	  <input name="<?php echo self::$form_option_name;?>[vcita_email]" id="si_contact_vcita_email" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_email']); ?>" />
 
-    ?>
-    <input name="<?php echo self::$form_option_name;?>[vcita_approved]" id="si_contact_vcita_approved" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_approved']); ?>" />
-    <input name="<?php echo self::$form_option_name;?>[vcita_uid]" id="si_contact_vcita_uid" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_uid']); ?>" />
-    <input name="<?php echo self::$form_option_name;?>[vcita_email]" id="si_contact_vcita_email" type="hidden" value="<?php echo esc_attr( self::$form_options['vcita_email']); ?>" />
-    <div class="clear"></div>
-    <fieldset class="fscf_settings_group">
-      <div class="vcita_options_container">
-      <p class="submit">
-			  <input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
-		   </p>
-       <div style="margin-left:8px;">
-	       <p>Enhance your Contact Form with Online Scheduling. Let your clients book appointments and request services online. <a target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/integrations/fast_secure/how_it_works">Watch how it works</a></p>
-	       <b>Contact Requests should be sent to this email:</b></br>
+	  <div class="clear"></div>
+
+	  <fieldset class="fscf_settings_group">
+	    <div class="vcita_options_container">
+
+	      <input id="submit" class="button-primary" type="submit" value="<?php esc_attr_e('Save Changes', 'si-contact-form'); ?>" onclick="document.pressed=this.value" name="submit" />
+
+	      <?php if ( self::$form_options['vcita_approved'] != 'true') : ?>
+	      <div class="scheduler_not_conected_note">Note: Your scheduler is not connected to your email yet - first name and last name are required</div><br>
+	      <?php endif; ?>
+
+	       <p>
+	         Enhance your Contact Form with Online Scheduling.
+	         <br>
+	         Let your clients book appointments and request services online. <a target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/integrations/fast_secure/how_it_works">Watch how it works</a>
+	       </p>
+	       <b>Scheduling requests should be sent to:</b></br>
 	           <?php if ( self::$form_options['vcita_approved'] == 'true') : ?>
+
+	             <?php
+	              // For users who registered through FSCF we send an auth_token param along with the link
+	              // So the user won't see a login screen when he still does not have a password
+	              $auth_token_param = isset( self::$form_options['auth_token'] ) ? '&auth_token=' . self::$form_options['auth_token'] : ''; ?>
 
 	             <?php FSCF_Process::vcita_disable_init_msg(self::$form_options, self::$global_options) ?>
 	             <span style="vertical-align: middle;"><?php echo esc_attr(self::$form_options['vcita_email']); ?></span>
 	             <a onclick="toggleVisibility('change_account_box');" class="vcita-help">Change/Add Email Address</a>
 	             <div id="change_account_box" style="display:none;margin-top:6px;">
 	               <input style='display:none;' id='vcita_change_email_action' type='submit' name='vcita_change_email_action'/>
-	               To change/add email address go to 
+	               To change/add email address go to
 	               <a href='http://<?php echo self::$global_options['vcita_site'] ?>/settings?section=profile&email=<?php echo self::$form_options['vcita_email'] ?>' target='_blank'>Profile Settings</a>
 	               <div style="margin-top:8px;">If you changed your email address please update the new address below so it will be reflected in the plugin</div>
 	               <div style="margin-top:3px;">
-	                 New email 
+	                 New email
 	                 <input name="<?php echo self::$form_option_name;?>[vcita_changed_email]" id="si_contact_vcita_changed_email" type='text'/>
 	                 <a title="<?php _e('Change Email', 'si-contact-form'); ?>" target="_blank" onclick="document.getElementById('vcita_change_email_action').click();return false;" class="vcita-help button-primary no-save-changes"><?php _e('Update Email', 'si-contact-form'); ?></a>
 	                 <a onclick="toggleVisibility('change_account_box');" class="vcita-help">Cancel</a>
-	               </div>  
+	               </div>
 	             </div>
-	             <br /><br /><a href='http://<?php echo self::$global_options['vcita_site'] ?>/settings?section=services&email=<?php echo self::$form_options['vcita_email'] ?>' target='_blank' class="button-primary">Scheduling Settings</a>
 	             <input style='display:none;' id='vcita_disconnect_button' type='submit' name='vcita_disconnect'/>
 	           <?php else : ?>
 
-	             <div class="scheduler_not_conected_note">Note: Your scheduler is not connected to your email yet - first name and last name are required</div><br>
 	             <label class="vcita-btn-label" for="<?php echo self::$form_option_name;?>[vcita_email_new]"><?php _e('Email:', 'si-contact-form') ?></label>
 	             <input name="<?php echo self::$form_option_name;?>[vcita_email_new]" id="si_contact_vcita_email_new" type="text" value="<?php echo esc_attr(self::$form_options['vcita_email_new']); ?>"  />
 	             &nbsp;
@@ -3111,11 +3117,19 @@ if( self::$form_options['external_style'] == 'true' ) {
 	             <div style="margin-top:5px;">
 	               <label class="vcita-btn-label" for="<?php echo self::$form_option_name;?>[vcita_last_name]"><?php _e('Last Name:', 'si-contact-form') ?></label>
 	               <input name="<?php echo self::$form_option_name;?>[vcita_last_name]" id="si_contact_vcita_last_name" type="text" value="<?php echo esc_attr(self::$form_options['vcita_last_name']); ?>"  />
-	             </div>  
+	             </div>
 	           <?php endif ?>
+
 	         </br></br>
-	         <b>Scheduling</b>
+	         <b><?php _e('Scheduling Button Settings','si-contact-form'); ?></b>
 	         <div class="vcita_inner_box">
+	           <p>
+	           <?php if ( self::$form_options['vcita_approved'] == 'true') : ?>
+	            <a href='http://<?php echo self::$global_options['vcita_site'] ?>/settings?section=services&email=<?php echo self::$form_options['vcita_email'] ?><?php echo $auth_token_param; ?>' target='_blank' class="button-primary"><?php _e('Set Your scheduling Options','si-contact-form'); ?></a>
+	            <?php else: ?>
+	            <a class="button-secondary button-disabled" disabled><?php _e('Set Your scheduling Options','si-contact-form'); ?></a>
+	           <?php endif; ?>
+	           </p>
 	           <br />
 	           <input name="<?php echo self::$form_option_name;?>[vcita_scheduling_button]" type="checkbox" class="vcita-chkbox" id="si_contact_vcita_scheduling_button" <?php if ( self::$form_options['vcita_scheduling_button'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
 	           <label class="vcita-label" for="si_contact_vcita_scheduling_button"><?php _e('Add a scheduling button to your form', 'si-contact-form') ?></label>
@@ -3127,28 +3141,27 @@ if( self::$form_options['external_style'] == 'true' ) {
 	             <input style="width:189px;" name="<?php echo self::$form_option_name;?>[vcita_scheduling_button_label]" id="si_contact_vcita_scheduling_button_label" type="text" value="<?php echo esc_attr(self::$form_options['vcita_scheduling_button_label']); ?>" /><br />
 	             <br />Button CSS can be edited in the Styles tab.
 	             <br /><br />
-	             <input name="<?php echo self::$form_option_name;?>[vcita_link]" type="checkbox" class="vcita-chkbox" id="si_contact_vcita_link" <?php if ( self::$form_options['vcita_link'] == 'true' ) echo 'checked="checked"'; ?> value="true" />
-	             <label class="vcita-label" for="si_contact_vcita_link"><?php _e('Show call for action below the button:', 'si-contact-form') ?></label>
-	             <input style="width:500px;" name="<?php echo self::$form_option_name;?>[vcita_scheduling_link_text]" id="si_contact_vcita_scheduling_link_text" type="text" value="<?php echo esc_attr(self::$form_options['vcita_scheduling_link_text']); ?>" /><br />
-                 <input style='display:none;' id='vcita_disable_button' type='submit' name='vcita_disable'/>
 	           </div>
 	           <br />
+	           <input style='display:none;' id='vcita_disable_button' type='submit' name='vcita_disable'/>
+	           <br />
 	         </div>
+
 	      <?php if ( self::$form_options['vcita_approved'] == 'true' )  : ?>
 	        <div class="privacy_box">
-            <a title="<?php _e('Change Account', 'si-contact-form'); ?>" target="_blank" onclick="confirmChangeAccount()"><?php _e('Change Account', 'si-contact-form'); ?></a>
-            <a title="<?php _e('More about vCita', 'si-contact-form'); ?>" target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/integrations/fast_secure/more_from_vcita"><?php _e('More about vCita', 'si-contact-form'); ?></a>
-            <a title="<?php _e('Help/Faq', 'si-contact-form'); ?>" href="http://support.vcita.com/categories/20062431-FAQs-and-Guides" target='_blank'><?php _e('Help/Faq', 'si-contact-form'); ?></a>
+	          <a title="<?php _e('Change Account', 'si-contact-form'); ?>" target="_blank" onclick="confirmChangeAccount()"><?php _e('Change Account', 'si-contact-form'); ?></a>
+	          <a title="<?php _e('More about vCita', 'si-contact-form'); ?>" target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/integrations/fast_secure/more_from_vcita"><?php _e('More about vCita', 'si-contact-form'); ?></a>
+	          <a title="<?php _e('Help/Faq', 'si-contact-form'); ?>" href="https://support.vcita.com/entries/96236698-Add-Appointment-Booking-and-Online-Scheduling-Button-to-Fast-Secure-Contact-Form" target='_blank'><?php _e('Help/Faq', 'si-contact-form'); ?></a>
 	        </div>
 	      <?php else : ?>
 	        <br/><br/>
-          <div class="privacy_box">
-            <a title="<?php _e('Privacy Policy', 'si-contact-form'); ?>" target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/about/privacy_policy"><?php _e('Privacy Policy', 'si-contact-form'); ?></a>
-             <a title="<?php _e('Click for Help!', 'si-contact-form'); ?>" href="http://support.vcita.com/categories/20062431-FAQs-and-Guides" target='_blank'"><?php _e('Help', 'si-contact-form'); ?></a>
-          </div>
+	        <div class="privacy_box">
+	          <a title="<?php _e('Privacy Policy', 'si-contact-form'); ?>" target="_blank" href="http://<?php echo self::$global_options['vcita_site'] ?>/about/privacy_policy"><?php _e('Privacy Policy', 'si-contact-form'); ?></a>
+	           <a title="<?php _e('Click for Help!', 'si-contact-form'); ?>" href="https://support.vcita.com/entries/96236698-Add-Appointment-Booking-and-Online-Scheduling-Button-to-Fast-Secure-Contact-Form" target="_blank"><?php _e('Help', 'si-contact-form'); ?></a>
+	        </div>
 	      <?php endif ?>
 
-	    </div>  
+
 	  </div>
   </fieldset>
     <?php
@@ -3188,8 +3201,6 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		?>
 		<div class="clear"></div>
 		<fieldset class="fscf_settings_group">
-
-        <?php self::display_ads(); ?>
 
 		<input type="hidden" id="tools-admin-url" value="<?php echo admin_url( "plugins.php?page=si-contact-form/si-contact-form.php&amp;fscf_form=$form_num&amp;fscf_tab=8" ); ?>" />
 		<?php // Display a warning if the form has unsaved changes  ?>
@@ -3390,14 +3401,11 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
     self::$global_options = FSCF_Util::get_global_options();
     if(!isset($text['vcita_scheduling_button']))
       $text['vcita_scheduling_button'] = 'false';
-    if(!isset($text['vcita_link']))
-      $text['vcita_link'] = 'false';
 
     if (isset($_POST['vcita_disconnect'])) {
       $text = FSCF_Process::vcita_disconnect_form($text);
     } else if (isset($_POST['vcita_disable'])) {
     	$text['vcita_scheduling_button'] = 'false';
-    	$text['vcita_link'] = 'false';
     	self::$global_options['vcita_dismiss'] = 'true';
     	self::$global_options['vcita_show_disable_msg'] = 'true';
     	update_option( 'fs_contact_global', self::$global_options );
@@ -3588,8 +3596,8 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 				'captcha_input_style'	 => 'text-align:left; margin:0; width:50px;', // CAPTCHA input field
  			    'textarea_style'         => 'text-align:left; margin:0; width:99%; max-width:250px; height:120px;', // Input Textarea 
 				'select_style'			 => 'text-align:left;',	// Input Select
- 			    'checkbox_style'         => 'width:13px;', // Input checkbox
-                'radio_style'            => 'width:13px;', // Input radio
+ 			    'checkbox_style'         => 'width:22px; height:32px;', // Input checkbox
+                'radio_style'            => 'width:22px; height:32px;', // Input radio
                 'placeholder_style'      => 'opacity:0.6; color:#333333;', // placeholder style
 
 				'button_style'			 => 'cursor:pointer; margin:0;', // Submit button 
@@ -3629,10 +3637,11 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		// Sanitize settings fields
 		$html_fields = array( 'welcome', 'after_form_note', 'req_field_indicator', 'text_message_sent', 'success_page_html' );
 		if ( 'true' == $text['auto_respond_html'] ) $html_fields[] = 'auto_respond_message';
+        if ( defined( 'DISALLOW_UNFILTERED_HTML' ) && DISALLOW_UNFILTERED_HTML ) // do not allow unfiltered HTML
+            $html_fields = array( );
 		foreach ( $text as $key => $value ) {
 			if ( is_string($value) ) {
 				if ( in_array( $key, $html_fields ) ) {
-					//$text[$key] = wp_filter_kses( $value );  //strips too much
                     $text[$key] = $value;
 				}
 				else $text[$key] = strip_tags( $value );
@@ -3730,14 +3739,15 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
                        $field['slug'] = 'na';
 					$slug_changed = true;
 				}
-				
+
 				// Make sure the slug is unique
 				if ( $slug_changed ) {
 					$text['fields'][$key]['slug'] = self::check_slug( $field['slug'], $slug_list );
 				}
 			}
-			$slug_list[] = $text['fields'][$key]['slug'];
-			
+            if( isset( $text['fields'][$key]['slug'] ) )
+			  $slug_list[] = $text['fields'][$key]['slug'];
+
 			// If a select type field, make sure the select options list is not empty
 			if ( in_array( $field['type'], $select_type_fields ) ) {
                  // remove blank lines and trim options
@@ -3778,14 +3788,14 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
 		// Update the query args if necessary
 		if ( ! isset($_POST['ctf_action'])&& isset( $_REQUEST['_wp_http_referer'] ) ) {
 			// Set the current tab in _wp_http_referer so that we go there after the save
-			$wp_referer = remove_query_arg( 'fscf_tab', $_REQUEST['_wp_http_referer'] );
-			$wp_referer = add_query_arg( 'fscf_tab', $_POST['current_tab'], $wp_referer );
+			$wp_referer = esc_url_raw(remove_query_arg( 'fscf_tab', $_REQUEST['_wp_http_referer'] ));
+			$wp_referer = esc_url_raw(add_query_arg( 'fscf_tab', $_POST['current_tab'], $wp_referer ));
 			if ( isset( $text['akismet_check'] ) ) {
 				// Request Akismet check on page reload
-				$wp_referer = add_query_arg( 'akismet_check', 'true', $wp_referer );
+				$wp_referer = esc_url_raw(add_query_arg( 'akismet_check', 'true', $wp_referer ));
 				unset ( $text['akismet_check'] );	// Don't save this in database
 			} else {
-				$wp_referer = remove_query_arg( 'akismet_check', $wp_referer );
+				$wp_referer = esc_url_raw(remove_query_arg( 'akismet_check', $wp_referer ));
 			}
 			$_REQUEST['_wp_http_referer'] = $wp_referer;
 		}
@@ -4056,79 +4066,7 @@ if (!function_exists('sicf_ctct_admin_form')) { // skip if the plugin is already
     }
 }
 
-	static function display_ads() {
-		// Output a random ad
-		// Ads will not be displayed if user has donated
 
-		if ( 'true' != self::$global_options['donated']  & ! empty(self::$ads) & count(self::$ads) > count(self::$ads_used)) {
-			// Find an unused ad
-			$num_ads = count(self::$ads);
-			do {
-				$numb = mt_rand(0,$num_ads-1);
-			} while ( ! empty(self::$ads_used[$numb]) );
-			// Output the ad
-			echo '<div class="fscf_right fscf_ad">';
-			echo self::$ads[$numb];
-			echo '</div>';
-			// Mark this ad as used
-			self::$ads_used[$numb] = true;
-			return;
-		}
-	}	// end function display_ads()
-
-	static function define_ads() {
-		// HTML code for new ads should be added to this array as strings
-		// The optimum size is 300 x 250px (set in fscf-styles-admin.css)
-
-
-        $vcita = '	<a href="'.admin_url( 'plugins.php?page=si-contact-form/si-contact-form.php&amp;fscf_form='. self::$current_form).'&fscf_tab=7">
-        <img src="' . plugins_url( 'si-contact-form/includes/images/vcita_banner.jpg').'" class="fscf_centered" /></a>
-';
-
-        $sharasale1 = '  <a href="http://www.shareasale.com/r.cfm?b=415758&u=861636&m=41388&urllink=&afftrack=" target="_blank">
-        <img src="' . plugins_url( 'si-contact-form/includes/images/Feature-Fast-300x250.jpeg').'" class="fscf_centered" /></a>
-';
-
-        $sharasale2 = '  <a href="http://www.shareasale.com/r.cfm?b=415758&u=861636&m=41388&urllink=&afftrack=" target="_blank">
-        <img src="' . plugins_url( 'si-contact-form/includes/images/WPE_Orange_300x250.jpg').'" class="fscf_centered" /></a>
-';
-
-        $sharasale3 = '  <a href="http://www.shareasale.com/r.cfm?b=415758&u=861636&m=41388&urllink=&afftrack=" target="_blank">
-        <img src="' . plugins_url( 'si-contact-form/includes/images/WPE_New_300x250.jpg').'" class="fscf_centered" /></a>
-';
-
-
-        $hostgator = '
-        '.sprintf(__('"I recommend <a href="%s" target="_blank">HostGator Web Hosting</a>. All my sites are hosted there. The prices are great and they offer compatibility for WordPress. If you click this link and start an account at HostGator, I get a small commission." - Mike Challis', 'si-contact-form'), 'http://secure.hostgator.com/~affiliat/cgi-bin/affiliates/clickthru.cgi?id=mchallis-fscwp&amp;page=http://www.hostgator.com/apps/wordpress-hosting.shtml').
-   '
-    <a href="http://secure.hostgator.com/~affiliat/cgi-bin/affiliates/clickthru.cgi?id=mchallis-fscwp&amp;page=http://www.hostgator.com/apps/wordpress-hosting.shtml" target="_blank"><img title="'.esc_attr(__('Web Site Hosting', 'si-contact-form')).'" alt="'. esc_attr(__('Web Site Hosting', 'si-contact-form')).'" src="'.plugins_url( 'si-contact-form/includes/images/hostgator-blog.gif' ).'" width="100" height="100" /></a>
-';
-
-
-        $show_vcita = 0;
-     if (self::$form_options['vcita_scheduling_button'] != 'true') {
-		$show_vcita = 1;
-     }
-        self::$ads = array();
-
-     if ($show_vcita)
-		self::$ads[] = $vcita;
-		self::$ads[] = $sharasale1;
-        self::$ads[] = $hostgator;
-
-     if ($show_vcita)
-		self::$ads[] = $vcita;
-		self::$ads[] = $sharasale2;
-        self::$ads[] = $hostgator;
-
-     if ($show_vcita)
-		self::$ads[] = $vcita;
-		self::$ads[] = $sharasale3;
-        self::$ads[] = $hostgator;
-
-
-		}	// end function define_ads()
-	
 }  // end class FSCF_Options
 
 // end of file

@@ -3,6 +3,14 @@
  <!-- footer -->
  <div id="footer">
 
+ <!-- Set same background of header to footer -->
+ <script>
+  if($("#header-wrap").css('background-image'))
+    $("#footer").css('background-image', $("#header-wrap").css('background-image'));
+  else
+    $("#footer").css('backgroundColor', $("#header-wrap").css('backgroundColor'));
+ </script>
+
   <!-- page block -->
   <div class="block-content">
 

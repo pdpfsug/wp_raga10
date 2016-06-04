@@ -1,4 +1,8 @@
 <?php
+//error_reporting(E_ALL); // Report all errors and warnings (very strict, use for testing only)
+//ini_set('display_errors', 1); // turn error reporting on
+//ini_set('log_errors', 1); // log errors
+//ini_set('error_log', dirname(__FILE__) . '/error_log.txt'); // where to log errors
 /**
  * Project:     Securimage: A PHP class for creating and managing form CAPTCHA images<br />
  * File:        securimage.php<br />
@@ -85,7 +89,7 @@
  * @subpackage classes
  *
  */
-class Securimage_ctf {
+class Securimage_Captcha_ctf {
 
 	/**
 	 * The desired width of the CAPTCHA image.
@@ -373,7 +377,7 @@ class Securimage_ctf {
 	 * </code>
 	 *
 	 */
-	function Securimage_ctf()
+	function __construct()
 	{
 
 	// Set Default Values
@@ -733,7 +737,7 @@ class Securimage_ctf {
 					// for optimal character widths, do not use multiple text colors or character angles and the complete string will be written by imagettftext
 					if (strpos('abcdeghknopqsuvxyz', $ch) !== false) {
 						$min_x = $font_size - ($this->iscale * 6);
-						$max_x = $font_size - ($this->iscale * 6);
+						$max_x = $font_size - ($this->iscale * 8);
 					} else if (strpos('ilI1', $ch) !== false) {
 						$min_x = $font_size / 5;
 						$max_x = $font_size / 3;
@@ -745,7 +749,7 @@ class Securimage_ctf {
 						$max_x = $font_size + ($this->iscale * 3);
 					} else { // numbers, capitals or unicode
 						$min_x = $font_size + ($this->iscale * 2);
-						$max_x = $font_size + ($this->iscale * 5);
+						$max_x = $font_size + ($this->iscale * 8);
 					}
 					 
 					$x += rand($min_x, $max_x);
@@ -1122,7 +1126,7 @@ class Securimage_Color_ctf {
 	 * @param $green Green component 0-255
 	 * @param $blue Blue component 0-255
 	 */
-	function Securimage_Color_ctf($red, $green, $blue)
+	function __construct($red, $green, $blue)
 	{
 		if ($red < 0) $red       = 0;
 		if ($red > 255) $red     = 255;

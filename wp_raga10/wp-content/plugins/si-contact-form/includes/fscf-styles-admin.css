@@ -127,7 +127,7 @@ a:focus {outline:none !important;}
 .vcita-btn-label{ width: 120px; display: block; float: left; line-height: 24px; }
 .vcita_options_container { max-width:100%; }
 .vcita_inner_box { padding-left:0px; }
-.scheduling_button_box { padding-left:15px; }
+.scheduling_button_box { padding-left:24px; }
 .active_enage_help_tip { padding-left:17px; }
 .privacy_box { float:right; }
 .privacy_box a { cursor:pointer; }
@@ -136,4 +136,3 @@ a:focus {outline:none !important;}
 .contact_vcita_email_tip { text-align:left; display:none }
 .vcita-help { cursor: pointer; vertical-align: middle;}
 .vcita-chkbox {vertical-align: middle !important;}
-

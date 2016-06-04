@@ -625,7 +625,7 @@ msgstr "Non trovato"
 
 #: c:\wamp\www\wordpress\wp-content\themes\arclite/index.php:65
 msgid "Sorry, but you are looking for something that isn't here."
-msgstr "Stai cercando un centenuto che non é qui."
+msgstr "Stai cercando un contenuto che non é qui."
 
 #: c:\wamp\www\wordpress\wp-content\themes\arclite/links.php:21
 msgid "Links:"

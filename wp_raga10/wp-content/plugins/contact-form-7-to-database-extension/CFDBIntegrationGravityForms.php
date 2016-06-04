@@ -77,41 +77,40 @@ class CFDBIntegrationGravityForms {
                 $field = (array)$field;
             }
 
+            $fieldId = $field['id'];
             $fieldName = $field['label'];
-
-            if (!empty($field['inputs']) && is_array($field['inputs'])) {
-                if ($field['type'] == 'checkbox') {
-                    // This is a multi-input field
-                    if (!isset($postedData[$fieldName]) || $postedData[$fieldName] === '') { // handle duplicate empty hidden fields
-                        $values = array();
-                        foreach ($field['inputs'] as $input) {
-                            $inputId = strval($input['id']); // Need string value of number like '1.3'
-                            if (!empty($entry[$inputId])) {
-                                $values[] = $entry[$inputId];
-                            }
-                        }
-                        $postedData[$fieldName] = implode(',', $values);
-                    }
-                } else {
-                    foreach ($field['inputs'] as $input) {
-                        $inputId = strval($input['id']); // Need string value of number like '1.3'
-                        $label = $input['label']; // Assumption: all inputs have diff labels
-                        $effectiveFieldName = $fieldName;
-                        if (!empty($label)) {
-                            $effectiveFieldName = $fieldName . ' ' . $label;
-                        }
-                        if (!isset($postedData[$effectiveFieldName]) || $postedData[$effectiveFieldName] === '') {  // handle duplicate empty hidden fields
-                            $postedData[$effectiveFieldName] = $entry[$inputId];
-                        }
-                    }
-                }
-            } else {
-                $fieldId = $field['id'];
+            
+            if (isset($entry[$fieldId])) {
                 switch ($field['type']) {
                     case 'list' :
                         $list = unserialize($entry[$fieldId]);
                         if ($list) {
-                            $postedData[$fieldName] = implode('|', $list);
+                            // $list may be a list of strings or
+                            // or in the case of Gravity Form List with columns,
+                            /*
+                             Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [Column 1] => hi
+                                            [Column 2] => there
+                                            [Column 3] => howdy
+                                        )
+                                )
+                             */
+                            if (! empty($list) && is_array($list[0])) {
+                                $colMatrix = array();
+                                foreach ($list as $colArray) {
+                                    $colList = array();
+                                    foreach ($colArray as $colKey => $colValue) {
+                                        $colList[] = $colKey . '=' . $colValue;
+                                    }
+                                    $colMatrix[] = implode('|', $colList);
+                                }
+                                $postedData[$fieldName] = implode("\n", $colMatrix);
+                            } else {
+                                $postedData[$fieldName] = implode('|', $list);
+                            }
                         } else {
                             if (!isset($postedData[$fieldName]) || $postedData[$fieldName] === '') { // handle duplicate empty hidden fields
                                 // List - value is serialized array
@@ -150,7 +149,38 @@ class CFDBIntegrationGravityForms {
                         }
                         break;
                 }
-
+            } else {
+                if (!empty($field['inputs']) && is_array($field['inputs'])) {
+                    if ($field['type'] == 'checkbox') {
+                        // This is a multi-input field
+                        if (!isset($postedData[$fieldName]) || $postedData[$fieldName] === '') { // handle duplicate empty hidden fields
+                            $values = array();
+                            foreach ($field['inputs'] as $input) {
+                                $inputId = strval($input['id']); // Need string value of number like '1.3'
+                                if (!empty($entry[$inputId])) {
+                                    $values[] = $entry[$inputId];
+                                }
+                            }
+                            $postedData[$fieldName] = implode(',', $values);
+                        }
+                    } else {
+                        foreach ($field['inputs'] as $input) {
+                            $inputId = strval($input['id']); // Need string value of number like '1.3'
+                            $label = $input['label']; // Assumption: all inputs have diff labels
+                            $effectiveFieldName = $fieldName;
+                            if (!empty($label)) {
+                                $effectiveFieldName = $fieldName . ' ' . $label;
+                            }
+                            if (!isset($postedData[$effectiveFieldName]) || $postedData[$effectiveFieldName] === '') {  // handle duplicate empty hidden fields
+                                if (isset($entry[$inputId])) {
+                                    $postedData[$effectiveFieldName] = $entry[$inputId];
+                                } else if (isset($entry[$fieldId])) {
+                                    $postedData[$effectiveFieldName] = $entry[$fieldId];
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 

@@ -69,7 +69,7 @@ $(document).ready(function(){
       <div class="clear"></div>
 
       <!-- search form -->
-      <div class="search-block" style="right:-5em; bottom:9em">
+      <div class="search-block" style="bottom:9em">
 	<div class="searchform-wrap" style="float:left">
           <form method="get" id="searchform" action="<?php bloginfo('url'); ?>/">
             <fieldset>

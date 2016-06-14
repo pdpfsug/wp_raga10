@@ -112,8 +112,8 @@ $(document).ready(function(){
 	<div id="nav-wrap1" style="left:auto; right:1em">
       		<div id="nav-wrap2">
 		        <ul id="nav"> 
-				<li class="page_item page-item-4812"><a class="fadeThis" href="http://127.0.0.1/wp_raga10/wp-content/uploads/2016/06/Manuale_Utilizzo.pdf"><span>Istruzioni</span></a></li>
-				<li class="page_item page-item-4795"><a class="fadeThis" href="http://127.0.0.1/wp_raga10/wp-login.php"><span>Login</span></a></li>
+				<li class="page_item page-item-4812"><a class="fadeThis" href="wp-content/uploads/2016/06/Manuale_Utilizzo.pdf"><span>Istruzioni</span></a></li>
+				<li class="page_item page-item-4795"><a class="fadeThis" href="wp-login.php"><span>Login</span></a></li>
         		</ul>
 		</div>
      	</div>

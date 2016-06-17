@@ -13,6 +13,14 @@ Assicurarsi di avere Apache, PHP e mySQL installati e configurati.
 * Ora tutto dovrebbe funzionare!
 
 
+### Accounts ###
 L'account admin predefinito è:
 username = TecnicoDiTerritorio
+password = password
+
+Gli account esempio associazione sono:
+username = AssociazioneA
+password = password
+
+username = AssociazioneB
 password = password

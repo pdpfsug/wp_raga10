@@ -882,7 +882,7 @@ class FSCF_Process {
 		// Gathers user info to include in the email message
 		// Returns the user info string
 		global $current_user, $user_ID;  // see if current WP user
-		get_currentuserinfo();
+		wp_get_current_user();
 
 		// lookup country info for this ip
 		// geoip lookup using Visitor Maps and Who's Online plugin
@@ -1766,7 +1766,7 @@ class FSCF_Process {
 		if ( $return == 'array' )
 			return $posted_data_export;
 		else
-			return $query_string;
+			return substr($query_string, 0, -1); // remove & on end
 	}  // end function export_convert
 
 

@@ -607,7 +607,7 @@ $string .= '
 		$string .= ($field['input_css'] != '') ? self::convert_css( $field['input_css'] ) : self::get_this_css('field_style');
 		$string .= ' type="password" id="fscf_field'.self::$form_id_num.'_'.$key.'" name="' . $field['slug'] . '" value=""'
 //					No defaults for password!
-						. '" '.self::$aria_required.' ';
+						. ' '.self::$aria_required.' ';
 					if($field['max_len'] != '')
 						$string .=  ' maxlength="'.$field['max_len'].'"';
 					if($field['attributes'] != '')
@@ -2030,7 +2030,7 @@ $string .= "    </div>";
 <div ' . self::get_this_css('field_div_style') . '>'
 					. self::echo_if_error( 'captcha' )
 					. "\n     <input " . self::get_this_css('captcha_input_style')
-					. ' type="text" value="" id="fscf_captcha_code' . self::$form_id_num . '" name="captcha_code" ' . self::$aria_required . ' />';
+					. ' type="text" value="" autocomplete="off" id="fscf_captcha_code' . self::$form_id_num . '" name="captcha_code" ' . self::$aria_required . ' />';
 			$string .= "\n</div>";
 		} else {
 			$string .= $captchaRequiresError;

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Twenty Sixteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-03-21 20:14:02+0000\n"
+"PO-Revision-Date: 2016-06-16 12:55:06+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -246,15 +246,15 @@ msgstr "Attivo"
 
 #: functions.php:176
 msgid "Content Bottom 2"
-msgstr "Contenuto al fondo degli articoli o delle pagine - 2"
+msgstr "Sotto al contenuto 2"
 
 #: functions.php:168 functions.php:178
 msgid "Appears at the bottom of the content on posts and pages."
-msgstr "Appare al fondo del contenuto degli articoli o delle pagine."
+msgstr "Appare sotto al contenuto degli articoli e delle pagine."
 
 #: functions.php:166
 msgid "Content Bottom 1"
-msgstr "Contenuto al fondo degli articoli o delle pagine - 1"
+msgstr "Sotto al contenuto 1"
 
 #. translators: If there are characters in your language that are not supported
 #. by Inconsolata, translate this to 'off'. Do not translate into your own
@@ -278,7 +278,7 @@ msgstr "Menu principale"
 
 #: footer.php:51
 msgid "Proudly powered by %s"
-msgstr "Funziona grazie a %s"
+msgstr "Proudly powered by %s"
 
 #: comments.php:69
 msgid "Comments are closed."

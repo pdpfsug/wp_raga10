@@ -4,7 +4,7 @@ Author URI: http://www.642weather.com/weather/scripts.php
 Donate link: https://www.FastSecureContactForm.com/donate
 Tags: Akismet, captcha, contact, contact form, form, mail, email, spam, multilingual
 Requires at least: 3.4.2
-Tested up to: 4.4.2
+Tested up to: 4.5.3
 Stable tag: trunk
 
 An easy and powerful form builder that lets your visitors send you email. Blocks all automated spammers. No templates to mess with.
@@ -216,7 +216,7 @@ Read [more about backups](http://www.fastsecurecontactform.com/backup-restore-fo
 Yes. To use a translated version, you need to obtain or make the language file for it.
 At this point it would be useful to read [Installing WordPress in Your Language](http://codex.wordpress.org/Installing_WordPress_in_Your_Language "Installing WordPress in Your Language") from the Codex. You will need an .mo file for this plugin that corresponds with the "WPLANG" setting in your wp-config.php file. Translations are listed below -- if a translation for your language is available, all you need to do is place it in the `/wp-content/plugins/si-contact-form/languages` directory of your WordPress installation. If one is not available, and you also speak good English, please consider doing a translation yourself (see the next question).
 
-The following translations are included in the download zip file:
+The following translations are included:
 
 = Translators =
 * Albanian (sq_AL) - Romeo Shuka
@@ -224,7 +224,7 @@ The following translations are included in the download zip file:
 * Bulgarian (bg_BG) - Dimitar Atanasov
 * Chinese (zh_CN) - Awu
 * Danish (da_DK) - GeorgWP
-* Farsi(Persian)(fa_IR) Ramin Firooz
+* Farsi (Persian)(fa_IR) Ramin Firooz
 * Finnish (fi) - Mikko Vahatalo
 * French (fr_FR) - Pierre Sudarovich
 * German (de_DE) - Sebastian Kreideweiss
@@ -270,6 +270,14 @@ You can enable or disable this option in the "Scheduling" tab of your contact fo
 If you have additional questions visit [vCita Support Page](http://support.vcita.com)
 
 == Changelog ==
+
+= 4.0.43 =
+- (23 Jun 2016) - Fix: wp_get_current_user error after wordpress 4.5.
+
+= 4.0.42 =
+- (18 Jun 2016) - Fix: syntax error on password field.
+- added autocomplete=off to CAPTCHA field.
+- fix: removed stray ampersand on end of redirect url.
 
 = 4.0.41 =
 - (13 Feb 2016) - Fix: PHP Fatal error: Class 'securimage_ctf' not found.

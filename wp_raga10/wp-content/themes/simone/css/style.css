@@ -1,0 +1,36 @@
+.developers {
+  margin: 20px;
+}
+
+.developers ul {
+  list-style-type: none;
+}
+
+.developers li img {
+  float: left;
+  margin: 0 15px 0 0;
+  height: 100px
+}
+
+.developers li p {
+  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+  color:green
+}
+.developers a:link {
+  text-decoration: none
+}
+
+.developers li {
+  padding: 10px;
+  overflow: auto;
+}
+
+.organization {
+  margin: 20px;
+}
+
+.organization img {
+  padding: 20px;
+  width: 300px;
+  border: medium none;
+}

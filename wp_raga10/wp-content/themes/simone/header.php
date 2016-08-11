@@ -8,6 +8,17 @@
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+<script type='text/javascript'>
+    function showDiv() {
+        if (document.getElementById('header-immagine').style.display == 'block') {
+            document.getElementById('header-immagine').style.display = 'none';
+ 	    document.getElementById('prova').innerHTML = "Espandi";
+        } else {
+            document.getElementById('header-immagine').style.display = 'block';
+	    document.getElementById('prova').innerHTML = "Riduci";
+        }
+    }
+</script>
 <head>
 <title>Raga10</title>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -16,13 +27,16 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
+
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
 
+<div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
+		
             <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'simone' ); ?></a>
+			
                 <?php if ( get_header_image() && ('blank' == get_header_textcolor()) ) { ?>
                 <figure class="header-image">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
@@ -32,7 +46,7 @@
                 <?php } // End header image check. ?>
             <?php
                 if ( get_header_image() && !('blank' == get_header_textcolor()) ) {
-                    echo '<div class="site-branding header-background-image" style="background-image: url(' . get_header_image() . ')">';
+                    echo '<div id="header-immagine" class="site-branding header-background-image" style="background-image: url(' . get_header_image() . '); display: block">';
                 } else {
                     echo '<div class="site-branding">';
                 }
@@ -56,6 +70,7 @@
 
 			<!-- Custom nav btn -->
 			<ul class="nav-menu sf-js-enabled sf-arrows" style="float:right">
+				<li><a id="prova" href="#" onClick="showDiv();">Riduci</a></li>
 				<li><a href="wp-content/uploads/2016/06/Manuale_Utilizzo.pdf">Istruzioni</a></li>
 				<li><a href="wp-login.php">Login</a></li>
 			</ul>
@@ -69,5 +84,5 @@
 		</div>
 
 	</header><!-- #masthead -->
-
+	
 	<div id="content" class="site-content">

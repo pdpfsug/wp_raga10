@@ -14,6 +14,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        setTimeout(function() {
+            window.location.href = "http://2.236.89.96/wp_raga10/wp_raga10/?post_type=tribe_events";
+        }, 600000);
+    });
+</script> 
 
 <?php wp_head(); ?>
 

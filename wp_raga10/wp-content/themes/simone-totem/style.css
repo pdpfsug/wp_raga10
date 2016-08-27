@@ -15,3 +15,17 @@ Template: simone
 .hidden {
     display: none;
 }
+
+.tribe-events-button {
+    display: none !important;
+}
+
+.site-footer a {
+    pointer-events: none;
+    cursor: default;
+}
+
+.entry-content a {
+    pointer-events: none;
+    cursor: default;
+}

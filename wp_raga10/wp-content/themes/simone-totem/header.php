@@ -22,29 +22,6 @@
 <body <?php body_class(); ?>>
 
 <div id="page" class="hfeed site">
-	<header id="masthead" class="site-header" role="banner">
-		
-            <a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'simone' ); ?></a>
-			
-                <?php if ( get_header_image() && ('blank' == get_header_textcolor()) ) { ?>
-                <figure class="header-image">
-                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-                            <img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="">
-                    </a>
-                </figure>
-                <?php } // End header image check. ?>
-            <?php
-                if ( get_header_image() && !('blank' == get_header_textcolor()) ) {
-                    echo '<div class="site-branding header-background-image" style="background-image: url(' . get_header_image() . '); display: block">';
-                } else {
-                    echo '<div class="site-branding">';
-                }
-            ?>
-                    <div class="title-box">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-                    </div>
-		</div>
 		
 		<nav id="site-navigation" class="main-navigation clear" role="navigation">
                     <h1 class="menu-toggle"><a href="#"><?php _e( 'Menu', 'simone' ); ?></a></h1>
@@ -58,7 +35,7 @@
                         <?php simone_social_menu(); ?>
 
 			<!-- Custom nav btn -->
-			<ul class="nav-menu sf-js-enabled sf-arrows" style="float:right">
+			<ul class="nav-menu hidden sf-js-enabled sf-arrows" style="float:right">
 				<li><a href="wp-content/uploads/2016/06/Manuale_Utilizzo.pdf">Istruzioni</a></li>
 				<li><a href="wp-login.php">Login</a></li>
 			</ul>

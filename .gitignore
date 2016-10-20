@@ -17,3 +17,8 @@ wp_raga10/wp-config.php
 /license.txt
 
 backups/*.gz
+
+backups/db-20160527.sql
+backups/db-20160527.sql.bck
+settings/wp-config.php
+

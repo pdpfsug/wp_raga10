@@ -17,7 +17,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function(event) { 
         setTimeout(function() {
-            window.location.href = "http://2.236.89.96/wp_raga10/wp_raga10/?post_type=tribe_events";
+            window.location.href = "http://localhost/wp_raga10/?post_type=tribe_events";
         }, 600000);
     });
 </script> 
